@@ -4,7 +4,8 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    cout << "INFORMA2" << endl;
+    cout << "Bienvenido" << endl;
     cout << "Prueb 1 rama!" << endl;
     return 0;
 }
