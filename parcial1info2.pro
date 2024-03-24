@@ -4,4 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        configurar_estructuras.cpp \
+        estructuras.cpp \
+        main.cpp \
+        reglas.cpp
