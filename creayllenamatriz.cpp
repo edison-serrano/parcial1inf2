@@ -49,26 +49,3 @@ int** crearMatriz(int n) {
     return matriz;
 }
 
-int main() {
-    int n;
-    cout << "Ingrese un número impar para el tamaño de la matriz cuadrada: ";
-    cin >> n;
-
-    if (n % 2 == 0) {
-        cout << "El número ingresado no es impar." << endl;
-        return 1;
-    }
-
-    int** matriz = crearMatriz(n); // Crea una matriz cuadrada
-
-    cout << "Matriz generada:" << endl;
-    imprimirMatriz(matriz, n);
-
-    // Liberar memoria
-    for (int i = 0; i < n; ++i) { // Itera sobre las filas de la matriz.
-        delete[] matriz[i]; // Libera la memoria de cada fila.
-    }
-    delete[] matriz; // Libera la memoria de la matriz.
-
-    return 0;
-}
