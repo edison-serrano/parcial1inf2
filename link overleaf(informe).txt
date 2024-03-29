@@ -1,4 +1,5 @@
 https://www.overleaf.com/project/6601f74fef3d4cccfdbc197a
 
-este es el link al informe, para que los dos lo visualizemos y modifiquemos
-ya lo agregue como colaborador
+este es el link al informe
+
+se agrega pdf en la carpeta
