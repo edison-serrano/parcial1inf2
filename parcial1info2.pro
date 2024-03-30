@@ -8,4 +8,8 @@ SOURCES += \
         creayllenamatriz.cpp \
         estructuras.cpp \
         main.cpp \
-        reglas.cpp
+        reglas.cpp \
+        rotarmatriz.cpp
+
+HEADERS += \
+    prototipos.h
