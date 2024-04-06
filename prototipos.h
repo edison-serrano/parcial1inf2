@@ -14,4 +14,6 @@ void igualarTamanos(int*** cerradura, int* tamanos, int numCerraduras, int taman
 void imprimirCerradura(int*** cerradura, int* tamanos, int numCerraduras, int tamanoMaximo);
 bool esDigito(char c);
 bool esNumeroEnteroPositivo(const char* str);
+
+
 #endif // PROTOTIPOS_H
