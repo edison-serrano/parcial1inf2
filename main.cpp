@@ -119,4 +119,30 @@ int main() {
     }
 //-----------------------------------------------------------------------------------------------
 
+    // Imprimir los tamaños de las matrices ingresados si se ingresaron correctamente
+    if (numTamañosIngresados == numCerraduras) {
+        cout << "Tamaños de matrices ingresados: ";
+        for (int i = 0; i < numCerraduras; ++i) {
+            cout << tamanos[i];
+            if (i != numCerraduras - 1) {
+                cout << ", ";
+            }
+        }
+        cout << endl;
+    }
+    //-------------------------------------------------------------------------------------------------
+
+
+
+
+
+    // Liberar memoria
+
+    delete[] tamanos;
+
+    return 0;
 }
+
+
+
+
