@@ -18,7 +18,7 @@ int main() {
     }
     //----------------------------------------------------------------------------------------------------
     int* tamanos = new int[numCerraduras];
-    cout << "Ingrese los tamaños de las matrices separados por comas (Ejemplo: 5,7,5,9): ";
+    cout << "Ingrese los tamaños de las matrices separados por comas (Ejemplo: 5,7,5,9,)\ncolocar una (,) al final: ";
     cin.ignore(); // Ignorar el salto de línea después de leer numCerraduras
 
     for (int i = 0; i < numCerraduras; ++i) {
@@ -155,7 +155,7 @@ int main() {
     int totalRotaciones = 0; // Contador de rotaciones totales
     bool cerraduraAbierta = true; // Suponemos que la cerradura está abierta
 
-    cout << "Ingrese las comparaciones en el formato (1: Mayor, -1: Menor)(Ejjemplo 1,-1,1) separadas por comas: ";
+    cout << "Ingrese las comparaciones en el formato (1: Mayor, -1: Menor\n(Ejjemplo 1,-1,1) separadas por comas: ";
     string comparaciones;
     cin.ignore(); // Limpiar el buffer
     getline(cin, comparaciones);

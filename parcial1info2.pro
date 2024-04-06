@@ -4,8 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        configurar_estructuras.cpp \
-        estructuras.cpp \
+        crear_estructuras.cpp \
+        estructuras_adicionales.cpp \
         main.cpp \
         reglas.cpp \
         rotarmatriz.cpp
