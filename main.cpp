@@ -1,5 +1,5 @@
 #include <iostream>
-#include <prototipos.h>
+
 using namespace std;
 
 void imprimirMatriz(int** matriz, int n, int tamanoMaximo) {
