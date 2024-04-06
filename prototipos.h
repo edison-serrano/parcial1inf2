@@ -1,19 +1,17 @@
 #ifndef PROTOTIPOS_H
 #define PROTOTIPOS_H
 
-int** crearMatriz(int n);
+#include <iostream>
+using namespace std;
+
 void imprimirMatriz(int** matriz, int n, int tamanoMaximo);
-int** rotarMatriz90(int** matriz, int n);
-int** rotarMatriz180(int** matriz, int n);
-int** rotarMatriz270(int** matriz, int n);
+int** crearMatriz(int n);
+int obtenerContenidoCelda(int** matriz, int fila, int columna);
+int compararMatrices(int** matriz1, int** matriz2, int fila, int columna, int n, int& rotacionesSinExito, int& totalRotaciones);
+void liberarMatriz(int** matriz, int n);
 int*** crearArregloDeMatrices(int* tamanos, int numMatrices);
-//<<<<<<< rama-jorge
+void igualarTamanos(int*** cerradura, int* tamanos, int numCerraduras, int tamanoMaximo);
 void imprimirCerradura(int*** cerradura, int* tamanos, int numCerraduras, int tamanoMaximo);
-
-=======
-int** rotarMatriz90(int** matriz, int n);
-int** rotarMatriz180(int** matriz, int n);
-int** rotarMatriz270(int** matriz, int n);
-//>>>>>>> master
-
+bool esDigito(char c);
+bool esNumeroEnteroPositivo(const char* str);
 #endif // PROTOTIPOS_H

@@ -1,12 +1,10 @@
-//<<<<<<< rama-jorge
-=======
 
 #include <iostream>
 #include <prototipos.h>
 
 using namespace std;
 
-
+/*
 // Función para rotar una matriz 90° en sentido antihorario
 int** rotarMatriz90(int** matriz, int n) {
   int** nuevaMatriz = new int*[n];
@@ -50,3 +48,4 @@ int** rotarMatriz270(int** matriz, int n) {
 }
 
 //>>>>>>> master
+*/
