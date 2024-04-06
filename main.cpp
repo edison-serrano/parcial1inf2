@@ -65,6 +65,7 @@ int** rotarMatriz90(int** matriz, int n) {
     return nuevaMatriz;
 }
 
+//<<<<<<< rama-jorge
 // Función para rotar una matriz 180°
 int** rotarMatriz180(int** matriz, int n) {
     int** nuevaMatriz = new int*[n];
@@ -149,6 +150,8 @@ void imprimirCerradura(int*** cerradura, int* tamanos, int numCerraduras, int ta
     }
 }
 
+=======
+//>>>>>>> master
 
 
 int main() {
@@ -175,9 +178,19 @@ int main() {
       if (tamanos[i] > tamanoMaximo) {
           tamanoMaximo = tamanos[i];
       }
+//<<<<<<< rama-jorge
   }
 
   cout << "Cerradura generada:" << endl;
   imprimirCerradura(cerradura, tamanos, numCerraduras, tamanoMaximo); // Imprime la cerradura original
   cout << endl;
 }
+=======
+      delete[] matriz; // Libera la memoria de la matriz original.
+      delete[] matriz_rotada_90; // Libera la memoria de la matriz rotada.
+      delete[] matriz_rotada_180; // Libera la memoria de la matriz rotada.
+      delete[] matriz_rotada_270;
+      return 0;
+}
+
+//>>>>>>> master
