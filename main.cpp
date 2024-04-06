@@ -4,42 +4,6 @@
 using namespace std;
 
 
-/*
-int main() {
-  int n;
-  cout << "Ingrese un numero impar para el tamano de la matriz cuadrada: ";
-  cin >> n;
-
-  if (n % 2 == 0) {
-    cout << "El numero ingresado no es impar." << endl;
-    return 1;
-  }
-
-  int** matriz = crearMatriz(n); // Crea una matriz cuadrada
-
-  cout << "Matriz generada:" << endl;
-  imprimirMatriz(matriz, n);
-
-  // Rotación
-  int** matriz_rotada_90 = rotarMatriz90(matriz, n);
-  int** matriz_rotada_180 = rotarMatriz180(matriz, n);
-  int** matriz_rotada_270 = rotarMatriz270(matriz, n);
-      // Liberar memoria
-      for (int i = 0; i < n; ++i) { // Itera sobre las filas de la matriz original.
-        delete[] matriz[i]; // Libera la memoria de cada fila.
-        delete[] matriz_rotada_90[i]; // Libera la memoria de cada fila de la matriz rotada.
-        delete[] matriz_rotada_180[i];
-        delete[] matriz_rotada_270[i];
-      }
-      delete[] matriz; // Libera la memoria de la matriz original.
-      delete[] matriz_rotada_90; // Libera la memoria de la matriz rotada.
-      delete[] matriz_rotada_180; // Libera la memoria de la matriz rotada.
-      delete[] matriz_rotada_270;
-      return 0;
-}
-
-*/
-
 int main() {
     int numCerraduras;
 
@@ -132,12 +96,128 @@ int main() {
     }
     //-------------------------------------------------------------------------------------------------
 
+    int*** cerradura = crearArregloDeMatrices(tamanos, numCerraduras); // Crea la cerradura
+    //-------------------------------------------------------------------------------------------
+    // Encuentra el tamaño máximo de las matrices en el arreglo
+    int tamanoMaximo = 0;
+    for (int i = 0; i < numCerraduras; ++i) {
+        if (tamanos[i] > tamanoMaximo) {
+            tamanoMaximo = tamanos[i];
+        }
+    }
 
+    cout << "Cerradura generada:" << endl;
+    imprimirCerradura(cerradura, tamanos, numCerraduras, tamanoMaximo); // Imprime la cerradura original
+    cout << endl;
+    //---------------------------------------------------------------------------------------------------------
+    // Almacena las cerraduras con tamaños iguales
+    int** cerradurasConTamanosIguales[numCerraduras]; // Arreglo para almacenar las cerraduras con tamaños iguales
+    int numCerradurasConTamanosIguales = 0; // Contador para el número de cerraduras con tamaños iguales
 
+    for (int i = 0; i < numCerraduras; ++i) {
+        if (tamanos[i] == tamanoMaximo) {
+            cerradurasConTamanosIguales[numCerradurasConTamanosIguales++] = cerradura[i];
+            cout << endl;
+        }
+    }
 
+    //------------------------------------------------------------------------------------------
+    //para tomar las coordenadas
+
+    int filaCasilla, columnaCasilla;
+    char comma;
+
+    bool formatoValido = false;
+
+    while (!formatoValido) {
+        cout << "Ingrese las coordenadas para la primera matriz (fila,columna): ";
+
+        // Leer la fila
+        if (!(cin >> filaCasilla) || filaCasilla <= 0) {
+            cout << "Error: La fila debe ser un número entero positivo. Intente nuevamente." << endl;
+            cin.clear(); // Limpiar el estado de error de cin
+            cin.ignore(10000, '\n'); // Descartar la entrada incorrecta
+            continue; // Volver a solicitar las coordenadas
+        }
+
+        // Leer el siguiente carácter
+        cin.get(comma);
+
+        // Verificar si el carácter leído es una coma
+        if (comma != ',') {
+            cout << "Error: Se esperaba una coma ',' después de la fila. Intente nuevamente." << endl;
+            cin.ignore(10000, '\n'); // Descartar la entrada incorrecta
+            continue; // Volver a solicitar las coordenadas
+        }
+
+        // Leer la columna
+        if (!(cin >> columnaCasilla) || columnaCasilla <= 0) {
+            cout << "Error: La columna debe ser un número entero positivo. Intente nuevamente." << endl;
+            cin.clear(); // Limpiar el estado de error de cin
+            cin.ignore(10000, '\n'); // Descartar la entrada incorrecta
+            continue; // Volver a solicitar las coordenadas
+        }
+
+        // Verificar si no quedan caracteres adicionales en la entrada
+        if (cin.peek() != '\n') {
+            cout << "Error: Formato de entrada incorrecto. Intente nuevamente." << endl;
+            cin.ignore(10000, '\n'); // Descartar la entrada incorrecta
+            continue; // Volver a solicitar las coordenadas
+        }
+
+        // Si todas las verificaciones pasan, el formato es válido
+        formatoValido = true;
+    }
+
+    cout << "Coordenadas ingresadas correctamente: (" << filaCasilla << "," << columnaCasilla << ")" << endl;
+
+    //cout << "Contenido de la celda en la posición (" << filaCasilla << ", " << columnaCasilla << ") de la matriz 1:" << endl;
+    cout << obtenerContenidoCelda(cerradurasConTamanosIguales[0], filaCasilla, columnaCasilla) << endl;
+    //-----------------------------------------------------------------------------------------------------------
+    // Comparar matrices consecutivas en orden inverso
+    int rotacionesSinExito = 0; // Contador de rotaciones sin éxito
+    int totalRotaciones = 0; // Contador de rotaciones totales
+    bool cerraduraAbierta = true; // Suponemos que la cerradura está abierta
+
+    cout << "Ingrese las comparaciones en el formato (1: Mayor, -1: Menor)(Ejjemplo 1,-1,1) separadas por comas: ";
+    string comparaciones;
+    cin.ignore(); // Limpiar el buffer
+    getline(cin, comparaciones);
+
+    size_t pos = 0;
+    string token;
+    while ((pos = comparaciones.find(",")) != string::npos) {
+        token = comparaciones.substr(0, pos);
+        int comparacion = stoi(token);
+
+        if (compararMatrices(cerradura[totalRotaciones + 1], cerradura[totalRotaciones], filaCasilla, columnaCasilla, tamanos[totalRotaciones + 1], rotacionesSinExito, totalRotaciones) != comparacion) {
+            // Si la comparación no es exitosa, mostrar mensaje y cambiar estado de la cerradura
+            cerraduraAbierta = false;
+            cout << "La comparación no coincide con la matriz girada." << endl;
+            break; // Salir del bucle al primer fallo
+        }
+
+        comparaciones.erase(0, pos + 1);
+    }
+
+    //----------------------------------------------------------------------------------------------------------
+    // Mostrar el estado de la cerradura
+    if (cerraduraAbierta) {
+        cout << "La cerradura está abierta." << endl;
+    } else {
+        cout << "La cerradura permanece cerrada." << endl;
+    }
+    //--------------------------------------------------------------------------------------
+    // Mostrar el número de rotaciones sin éxito
+    cout << "Número de rotaciones sin éxito: " << rotacionesSinExito << endl;
+    // Mostrar el número total de rotaciones realizadas
+    cout << "Número total de rotaciones: " << totalRotaciones << endl;
 
     // Liberar memoria
-
+    for (int i = 0; i < numCerraduras; ++i) {
+        liberarMatriz(cerradura[i], tamanos[i]);
+    }
+    delete[] cerradura;
     delete[] tamanos;
 
     return 0;
