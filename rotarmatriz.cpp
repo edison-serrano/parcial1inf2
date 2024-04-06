@@ -1,3 +1,5 @@
+//<<<<<<< rama-jorge
+=======
 
 #include <iostream>
 #include <prototipos.h>
@@ -47,3 +49,4 @@ int** rotarMatriz270(int** matriz, int n) {
   return nuevaMatriz;
 }
 
+//>>>>>>> master
