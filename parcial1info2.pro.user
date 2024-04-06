@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+
 <!-- Written by QtCreator 12.0.2, 2024-04-05T21:23:01. -->
+
+
+<!-- Written by QtCreator 4.9.1, 2024-04-05T22:24:39. -->
+
+
+<!-- Written by QtCreator 12.0.2, 2024-03-26T23:34:33. -->
+
+<!-- Written by QtCreator 4.9.1, 2024-03-28T17:51:02. -->
+
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -239,11 +249,20 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/edisonserrano/Udea/Informatica2/parcial1inf2/parcial1info2.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/edisonserrano/Udea/Informatica2/parcial1inf2/parcial1info2.pro</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
+
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">parcial1info2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">parcial1info22</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/LUISIS/Desktop/UdeA - 2024-1/Informatica2/Desafio/parcial1inf2/parcial1info2.pro</value>
+    <value type="QString" key="RunConfiguration.Arguments"></value>
+    <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
