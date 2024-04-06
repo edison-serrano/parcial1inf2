@@ -104,6 +104,38 @@ int*** crearArregloDeMatrices(int* tamanos, int numMatrices) {
     return arregloDeMatrices;
 }
 
+void igualarTamanos(int*** cerradura, int* tamanos, int numCerraduras, int tamanoMaximo) {
+    for (int i = 0; i < numCerraduras; ++i) {
+        if (tamanos[i] < tamanoMaximo) { // Si el tamaño de la matriz es menor que el tamaño máximo
+            int diferencia = tamanoMaximo - tamanos[i]; // Calcula la diferencia en tamaño
+            int** matrizActual = cerradura[i]; // Obtiene la matriz actual
+
+            // Crea una nueva matriz del tamaño máximo e inicializa con ceros
+            int** nuevaMatriz = new int*[tamanoMaximo];
+            for (int j = 0; j < tamanoMaximo; ++j) {
+                nuevaMatriz[j] = new int[tamanoMaximo]();
+            }
+
+            // Copia la matriz original a la nueva matriz en la posición correcta
+            for (int j = 0; j < tamanos[i]; ++j) {
+                for (int k = 0; k < tamanos[i]; ++k) {
+                    nuevaMatriz[j + diferencia][k + diferencia] = matrizActual[j][k];
+                }
+            }
+
+            // Libera la memoria de la matriz actual
+            for (int j = 0; j < tamanos[i]; ++j) {
+                delete[] matrizActual[j];
+            }
+            delete[] matrizActual;
+
+            // Actualiza la matriz en el arreglo cerradura
+            cerradura[i] = nuevaMatriz;
+        }
+    }
+}
+
+
 /// Función para imprimir la cerradura
 void imprimirCerradura(int*** cerradura, int* tamanos, int numCerraduras, int tamanoMaximo) {
     for (int i = 0; i < numCerraduras; ++i) {
