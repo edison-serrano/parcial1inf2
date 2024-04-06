@@ -1,29 +1,7 @@
 #include <iostream>
-
+#include "prototipos.h"
 using namespace std;
 
-void imprimirMatriz(int** matriz, int n, int tamanoMaximo) {
-    // Calcula las coordenadas de inicio y fin para imprimir la matriz original en la cerradura.
-    int inicioFila = (tamanoMaximo - n) / 2;
-    int inicioColumna = (tamanoMaximo - n) / 2;
-    int finFila = inicioFila + n;
-    int finColumna = inicioColumna + n;
-
-    for (int i = 0; i < tamanoMaximo; ++i) {
-        for (int j = 0; j < tamanoMaximo; ++j) {
-            if (i >= inicioFila && i < finFila && j >= inicioColumna && j < finColumna) {
-                // Imprime la parte central de la matriz original.
-                cout << matriz[i - inicioFila][j - inicioColumna] << "\t";
-            } else {
-                // Imprime cero para los elementos fuera de la matriz original.
-                cout << "0\t";
-            }
-        }
-        cout << endl;
-    }
-}
-
-//<<<<<<< rama-edison
 int main() {
     int numCerraduras;
 
@@ -38,17 +16,11 @@ int main() {
         cin.clear();
         while (cin.get() != '\n') {}
     }
-//------------------------------------------------------------------------------------------
-
-    // Crear un arreglo dinámico para almacenar los tamaños de las matrices
+    //----------------------------------------------------------------------------------------------------
     int* tamanos = new int[numCerraduras];
-
-    // Solicitar al usuario que ingrese los tamaños de las matrices separados por comas
     cout << "Ingrese los tamaños de las matrices separados por comas (Ejemplo: 5,7,5,9): ";
-
     cin.ignore(); // Ignorar el salto de línea después de leer numCerraduras
 
-    // Leer y validar los tamaños de las matrices ingresados por el usuario
     for (int i = 0; i < numCerraduras; ++i) {
         bool formatoCorrecto = false;
 
@@ -57,9 +29,7 @@ int main() {
             char nextChar;
             cin >> tamaño;
 
-            // Verificar si se pudo leer correctamente un entero
             if (!cin) {
-                // Mostrar mensaje de error si el formato de entrada es incorrecto o el valor es inválido
                 cout << "Formato incorrecto o valor inválido. Ingrese nuevamente en el formato correcto: ";
                 cin.clear(); // Limpiar el estado de error
 
@@ -69,31 +39,21 @@ int main() {
                 }
             } else {
                 tamanos[i] = tamaño;
+
                 // Leer el siguiente carácter para verificar si es una coma o un salto de línea
                 cin >> nextChar;
 
-                // Verificar el siguiente carácter para determinar si el formato es correcto
                 if (nextChar == ',') {
-                    formatoCorrecto = true; // El formato es correcto si se encontró una coma
+                    formatoCorrecto = true;
                 } else if (nextChar == '\n' || cin.eof()) {
-                    formatoCorrecto = true; // El formato es correcto si se llegó al final de la línea
+                    formatoCorrecto = true;
                 } else {
-                    // Mostrar mensaje de error si el siguiente carácter no es una coma o el final de la línea
                     cout << "Formato incorrecto. Se esperaba una coma (,) o el final de la línea. Ingrese nuevamente: ";
                 }
             }
-        } while (!formatoCorrecto); // Continuar leyendo hasta que el formato sea correcto
+        } while (!formatoCorrecto);
     }
-
-    // Mostrar los tamaños ingresados
-    cout << "Tamaños ingresados:";
-    for (int i = 0; i < numCerraduras; ++i) {
-        cout << " " << tamanos[i]; // Imprimir cada tamaño almacenado en el arreglo
-    }
-    cout << endl;
-
-//----------------------------------------------------------------------------------------------------
-
+    //--------------------------------------------------------------------------------------------------------------------------
     // Verificar si se ingresaron la cantidad correcta de tamaños de matrices
     int numTamañosIngresados = numCerraduras;
     if (cin.peek() != '\n') {
@@ -101,8 +61,7 @@ int main() {
         cout << "Se ingresaron más tamaños de matrices de los especificados. Por favor, intente nuevamente." << endl;
         numTamañosIngresados = 0; // Reiniciar el contador de tamaños ingresados
     }
-//-----------------------------------------------------------------------------------------------
-
+    //------------------------------------------------------------------------------------------------------------
     // Imprimir los tamaños de las matrices ingresados si se ingresaron correctamente
     if (numTamañosIngresados == numCerraduras) {
         cout << "Tamaños de matrices ingresados: ";
@@ -115,7 +74,6 @@ int main() {
         cout << endl;
     }
     //-------------------------------------------------------------------------------------------------
-
     int*** cerradura = crearArregloDeMatrices(tamanos, numCerraduras); // Crea la cerradura
     //-------------------------------------------------------------------------------------------
     // Encuentra el tamaño máximo de las matrices en el arreglo
@@ -142,8 +100,6 @@ int main() {
     }
 
     //------------------------------------------------------------------------------------------
-    //para tomar las coordenadas
-
     int filaCasilla, columnaCasilla;
     char comma;
 
@@ -219,7 +175,6 @@ int main() {
 
         comparaciones.erase(0, pos + 1);
     }
-
     //----------------------------------------------------------------------------------------------------------
     // Mostrar el estado de la cerradura
     if (cerraduraAbierta) {
@@ -239,182 +194,6 @@ int main() {
     }
     delete[] cerradura;
     delete[] tamanos;
-//=======
 
-// Función para crear una matriz cuadrada
-int** crearMatriz(int n) {
-    int** matriz = new int*[n];
-    for (int i = 0; i < n; ++i) {
-        matriz[i] = new int[n];
-        for (int j = 0; j < n; ++j) {
-            matriz[i][j] = 0;
-        }
-    }
-
-    int valor = 1;
-    int fila = 0;
-    int columna = 0;
-
-    while (valor < n * n) {
-        if (fila != n / 2 || columna != n / 2) {
-            matriz[fila][columna] = valor++;
-        }
-        if (++columna >= n) {
-            columna = 0;
-            ++fila;
-        }
-    }
-
-    return matriz;
+    return 0;
 }
-
-// Función para rotar una matriz 90° en sentido antihorario
-int** rotarMatriz90(int** matriz, int n) {
-    int** nuevaMatriz = new int*[n];
-    for (int i = 0; i < n; ++i) {
-        nuevaMatriz[i] = new int[n];
-        for (int j = 0; j < n; ++j) {
-            nuevaMatriz[i][j] = matriz[j][n - i - 1]; // Rotación antihoraria
-        }
-    }
-    cout << "Matriz rotada 90°:" << endl;
-    imprimirMatriz(nuevaMatriz, n, n); // Aquí se pasa el tercer argumento tamanoMaximo
-    return nuevaMatriz;
-}
-
-//<<<<<<< rama-jorge
-// Función para rotar una matriz 180°
-int** rotarMatriz180(int** matriz, int n) {
-    int** nuevaMatriz = new int*[n];
-    for (int i = 0; i < n; ++i) {
-        nuevaMatriz[i] = new int[n];
-        for (int j = 0; j < n; ++j) {
-            nuevaMatriz[i][j] = matriz[n - i - 1][n - j - 1]; // Rotación de 180°
-        }
-    }
-    cout << "Matriz rotada 180°:" << endl;
-    imprimirMatriz(nuevaMatriz, n, n); // Aquí se pasa el tercer argumento tamanoMaximo
-    return nuevaMatriz;
-}
-
-// Función para rotar una matriz 270°
-int** rotarMatriz270(int** matriz, int n) {
-    int** nuevaMatriz = new int*[n];
-    for (int i = 0; i < n; ++i) {
-        nuevaMatriz[i] = new int[n];
-        for (int j = 0; j < n; ++j) {
-            nuevaMatriz[i][j] = matriz[n - j - 1][i]; // Rotación de 270° corregida
-        }
-    }
-    cout << "Matriz rotada 270°:" << endl;
-    imprimirMatriz(nuevaMatriz, n, n); // Aquí se pasa el tercer argumento tamanoMaximo
-    return nuevaMatriz;
-}
-
-// Función para crear un arreglo de matrices cuadradas de acuerdo a los tamaños proporcionados
-int*** crearArregloDeMatrices(int* tamanos, int numMatrices) {
-    int*** arregloDeMatrices = new int**[numMatrices]; // Aloja memoria para el arreglo de matrices.
-
-    for (int i = 0; i < numMatrices; ++i) { // Itera sobre los tamaños proporcionados.
-        arregloDeMatrices[i] = crearMatriz(tamanos[i]); // Crea la matriz de tamaño correspondiente.
-    }
-
-    return arregloDeMatrices;
-}
-
-void igualarTamanos(int*** cerradura, int* tamanos, int numCerraduras, int tamanoMaximo) {
-    for (int i = 0; i < numCerraduras; ++i) {
-        if (tamanos[i] < tamanoMaximo) { // Si el tamaño de la matriz es menor que el tamaño máximo
-            int diferencia = tamanoMaximo - tamanos[i]; // Calcula la diferencia en tamaño
-            int** matrizActual = cerradura[i]; // Obtiene la matriz actual
-
-            // Crea una nueva matriz del tamaño máximo e inicializa con ceros
-            int** nuevaMatriz = new int*[tamanoMaximo];
-            for (int j = 0; j < tamanoMaximo; ++j) {
-                nuevaMatriz[j] = new int[tamanoMaximo]();
-            }
-
-            // Copia la matriz original a la nueva matriz en la posición correcta
-            for (int j = 0; j < tamanos[i]; ++j) {
-                for (int k = 0; k < tamanos[i]; ++k) {
-                    nuevaMatriz[j + diferencia][k + diferencia] = matrizActual[j][k];
-                }
-            }
-
-            // Libera la memoria de la matriz actual
-            for (int j = 0; j < tamanos[i]; ++j) {
-                delete[] matrizActual[j];
-            }
-            delete[] matrizActual;
-
-            // Actualiza la matriz en el arreglo cerradura
-            cerradura[i] = nuevaMatriz;
-        }
-    }
-}
-//>>>>>>> master
-
-
-/// Función para imprimir la cerradura
-void imprimirCerradura(int*** cerradura, int* tamanos, int numCerraduras, int tamanoMaximo) {
-    for (int i = 0; i < numCerraduras; ++i) {
-        cout << "Cerradura " << i+1 << " Original:" << endl;
-        imprimirMatriz(cerradura[i], tamanos[i], tamanos[i]); // Imprime la matriz original
-        cout << endl;
-
-        cout << "Cerradura " << i+1 << " con tamanos iguales:" << endl;
-        imprimirMatriz(cerradura[i], tamanos[i], tamanoMaximo); // Imprime la matriz con tamaños iguales
-        cout << endl;
-    }
-}
-//<<<<<<< rama-edison
-
-
-
-//=======
-
-//=======
-//>>>>>>> master
-
-
-int main() {
-    int numCerraduras;
-    cout << "Ingrese el número de matrices en la cerradura (Ejemplo: 4): ";
-    cin >> numCerraduras;  // Número de matrices en la cerradura
-    cin.ignore(); // Limpiar el buffer
-
-    int* tamanos = new int[numCerraduras];
-    cout << "Ingrese los tamaños de las matrices separados por comas (Ejemplo: 5,7,5,9): ";
-    for (int i = 0; i < numCerraduras; ++i) {
-        cin >> tamanos[i];
-        if (i < numCerraduras - 1) {
-            char comma;
-            cin >> comma; // Leer la coma
-        }
-    }
-
-  int*** cerradura = crearArregloDeMatrices(tamanos, numCerraduras); // Crea la cerradura
-
-  // Encuentra el tamaño máximo de las matrices en el arreglo
-  int tamanoMaximo = 0;
-  for (int i = 0; i < numCerraduras; ++i) {
-      if (tamanos[i] > tamanoMaximo) {
-          tamanoMaximo = tamanos[i];
-      }
-//<<<<<<< rama-jorge
-  }
-
-  cout << "Cerradura generada:" << endl;
-  imprimirCerradura(cerradura, tamanos, numCerraduras, tamanoMaximo); // Imprime la cerradura original
-  cout << endl;
-}
-//=======
-      delete[] matriz; // Libera la memoria de la matriz original.
-      delete[] matriz_rotada_90; // Libera la memoria de la matriz rotada.
-      delete[] matriz_rotada_180; // Libera la memoria de la matriz rotada.
-      delete[] matriz_rotada_270;
-      return 0;
-}
-//>>>>>>> master
-
-//>>>>>>> master
