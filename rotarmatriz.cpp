@@ -29,14 +29,18 @@ int compararMatrices(int** matriz1, int** matriz2, int fila, int columna, int n,
             // Asignar matrizTemporal a matriz1
             matriz1 = matrizTemporal;
         }
-
+ //---------------------------------------------------------------------------------------------
         // Realizar la comparación en la matriz rotada
-        if (matriz1[fila][columna] > matriz2[fila][columna])
+        if (matriz1[fila][columna] > matriz2[fila][columna]) {
+            std::cout << "Resultado de comparación: 1 (matriz1 > matriz2)" << std::endl;
             return 1;
-        else if (matriz1[fila][columna] < matriz2[fila][columna])
+        }
+        else if (matriz1[fila][columna] < matriz2[fila][columna]) {
+            std::cout << "Resultado de comparación: -1 (matriz1 < matriz2)" << std::endl;
             return -1;
+        }
     }
-
+//-------------------------------------------------------------------------------------------------
     // Si ninguna comparación es exitosa, aumentar el contador de rotaciones sin éxito
     rotacionesSinExito++;
 
