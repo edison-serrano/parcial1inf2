@@ -21,6 +21,7 @@ int main() {
     }
     //----------------------------------------------------------------------------------------------------
     int* tamanos = new int[numCerraduras];
+
     cout << "Ingrese los tamaños de las matrices separados por comas (Ejemplo: 5,7,5,9,)\ncolocar una (,) al final: ";
     cin.ignore(); // Ignorar el salto de línea después de leer numCerraduras
 
@@ -32,13 +33,11 @@ int main() {
             char nextChar;
             cin >> tamaño;
 
-            if (!cin) {
-                cout << "Formato incorrecto o valor inválido.\nIngrese nuevamente en el formato correcto: ";
+            if (!cin || tamaño % 2 == 0) {
+                cout << "Formato incorrecto o valor inválido (se permiten solo números impares).\nIngrese nuevamente en el formato correcto: ";
                 cin.clear(); // Limpiar el estado de error
-
-                // Descartar la entrada incorrecta hasta encontrar un salto de línea
                 while (cin.get() != '\n') {
-                    continue;
+                    continue; // Descartar la entrada incorrecta hasta encontrar un salto de línea
                 }
             } else {
                 tamanos[i] = tamaño;
@@ -56,17 +55,25 @@ int main() {
             }
         } while (!formatoCorrecto);
     }
+
+    // Imprimir los tamaños de las matrices ingresados si se ingresaron correctamente
+    cout << "Tamaños de matrices ingresados (impares): ";
+    for (int i = 0; i < numCerraduras; ++i) {
+        cout << tamanos[i];
+        if (i != numCerraduras - 1) {
+            cout << ", ";
+        }
+    }
+    cout << endl;
     //--------------------------------------------------------------------------------------------------------------------------
     // Verificar si se ingresaron la cantidad correcta de tamaños de matrices
     int numTamañosIngresados = numCerraduras;
-    while (numTamañosIngresados == numCerraduras) {
     if (cin.peek() != '\n') {
         // Si hay caracteres adicionales después de los tamaños, significa que se ingresaron más valores de los necesarios
         cout << "Se ingresaron más tamaños de matrices de los especificados.\nSaliendo del Programa..." << endl;
         //numTamañosIngresados = 0; // Reiniciar el contador de tamaños ingresados
         delete[] tamanos;
         return 0;
-    }
     }
     //------------------------------------------------------------------------------------------------------------
     // Imprimir los tamaños de las matrices ingresados si se ingresaron correctamente
