@@ -32,11 +32,11 @@ int compararMatrices(int** matriz1, int** matriz2, int fila, int columna, int n,
  //---------------------------------------------------------------------------------------------
         // Realizar la comparación en la matriz rotada
         if (matriz1[fila][columna] > matriz2[fila][columna]) {
-            std::cout << "Resultado de comparación: 1 (matriz1 > matriz2)" << std::endl;
+            cout << "Resultado de comparacion: 1 (matriz1 > matriz2)" << endl;
             return 1;
         }
         else if (matriz1[fila][columna] < matriz2[fila][columna]) {
-            std::cout << "Resultado de comparación: -1 (matriz1 < matriz2)" << std::endl;
+           cout << "Resultado de comparacion: -1 (matriz1 < matriz2)" << endl;
             return -1;
         }
     }
