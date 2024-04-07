@@ -8,12 +8,12 @@ using namespace std;
 int main() {
     int numCerraduras;
 
-    // Solicitar al usuario que ingrese el número de matrices en la cerradura
-    cout << "Ingrese el número de matrices en la cerradura (Ejemplo: 4): ";
+    // Solicitar al usuario que ingrese el numero de matrices en la cerradura
+    cout << "Ingrese el numero de matrices en la cerradura (Ejemplo: 4): ";
 
-    // Validar la entrada para asegurar que sea un número entero positivo sin decimales
+    // Validar la entrada para asegurar que sea un numero entero positivo sin decimales
     while (!(cin >> numCerraduras) || numCerraduras <= 0 || cin.peek() != '\n') {
-        cout << "Entrada inválida. Por favor, ingrese un número entero positivo sin decimales: ";
+        cout << "Entrada invalida. Por favor, ingrese un numero entero positivo sin decimales: ";
 
         // Limpiar el flujo de entrada para descartar caracteres incorrectos
         cin.clear();
@@ -22,25 +22,25 @@ int main() {
     //----------------------------------------------------------------------------------------------------
     int* tamanos = new int[numCerraduras];
 
-    cout << "Ingrese los tamaños de las matrices separados por comas (Ejemplo: 5,7,5,9,)\ncolocar una (,) al final: ";
+    cout << "Ingrese los tamanos de las matrices separados por comas (Ejemplo: 5,7,5,9,)\ncolocar una (,) al final: ";
     cin.ignore(); // Ignorar el salto de línea después de leer numCerraduras
 
     for (int i = 0; i < numCerraduras; ++i) {
         bool formatoCorrecto = false;
 
         do {
-            int tamaño;
+            int tamano;
             char nextChar;
-            cin >> tamaño;
+            cin >> tamano;
 
-            if (!cin || tamaño % 2 == 0) {
-                cout << "Formato incorrecto o valor inválido (se permiten solo números impares).\nIngrese nuevamente en el formato correcto: ";
+            if (!cin || tamano % 2 == 0) {
+                cout << "Formato incorrecto o valor invalido (se permiten solo numeros impares).\nIngrese nuevamente en el formato correcto: ";
                 cin.clear(); // Limpiar el estado de error
                 while (cin.get() != '\n') {
                     continue; // Descartar la entrada incorrecta hasta encontrar un salto de línea
                 }
             } else {
-                tamanos[i] = tamaño;
+                tamanos[i] = tamano;
 
                 // Leer el siguiente carácter para verificar si es una coma o un salto de línea
                 cin >> nextChar;
@@ -50,14 +50,14 @@ int main() {
                 } else if (nextChar == '\n' || cin.eof()) {
                     formatoCorrecto = true;
                 } else {
-                    cout << "Formato incorrecto. Se esperaba una coma (,) o el final de la línea. Ingrese nuevamente: ";
+                    cout << "Formato incorrecto. Se esperaba una coma (,) o el final de la linea. Ingrese nuevamente: ";
                 }
             }
         } while (!formatoCorrecto);
     }
 
     // Imprimir los tamaños de las matrices ingresados si se ingresaron correctamente
-    cout << "Tamaños de matrices ingresados (impares): ";
+    cout << "Tamanos de matrices ingresados (impares): ";
     for (int i = 0; i < numCerraduras; ++i) {
         cout << tamanos[i];
         if (i != numCerraduras - 1) {
@@ -67,18 +67,18 @@ int main() {
     cout << endl;
     //--------------------------------------------------------------------------------------------------------------------------
     // Verificar si se ingresaron la cantidad correcta de tamaños de matrices
-    int numTamañosIngresados = numCerraduras;
+    int numTamanosIngresados = numCerraduras;
     if (cin.peek() != '\n') {
         // Si hay caracteres adicionales después de los tamaños, significa que se ingresaron más valores de los necesarios
-        cout << "Se ingresaron más tamaños de matrices de los especificados.\nSaliendo del Programa..." << endl;
+        cout << "Se ingresaron mas tamaños de matrices de los especificados.\nSaliendo del Programa..." << endl;
         //numTamañosIngresados = 0; // Reiniciar el contador de tamaños ingresados
         delete[] tamanos;
         return 0;
     }
     //------------------------------------------------------------------------------------------------------------
     // Imprimir los tamaños de las matrices ingresados si se ingresaron correctamente
-    if (numTamañosIngresados == numCerraduras) {
-        cout << "Tamaños de matrices ingresados: ";
+    if (numTamanosIngresados == numCerraduras) {
+        cout << "Tamanos de matrices ingresados: ";
         for (int i = 0; i < numCerraduras; ++i) {
             cout << tamanos[i];
             if (i != numCerraduras - 1) {
@@ -124,7 +124,7 @@ int main() {
 
         // Leer la fila
         if (!(cin >> filaCasilla) || filaCasilla <= 0) {
-            cout << "Error: La fila debe ser un número entero positivo. Intente nuevamente." << endl;
+            cout << "Error: La fila debe ser un numero entero positivo. Intente nuevamente." << endl;
             cin.clear(); // Limpiar el estado de error de cin
             cin.ignore(10000, '\n'); // Descartar la entrada incorrecta
             continue; // Volver a solicitar las coordenadas
@@ -135,14 +135,14 @@ int main() {
 
         // Verificar si el carácter leído es una coma
         if (comma != ',') {
-            cout << "Error: Se esperaba una coma ',' después de la fila. Intente nuevamente." << endl;
+            cout << "Error: Se esperaba una coma ',' despues de la fila. Intente nuevamente." << endl;
             cin.ignore(10000, '\n'); // Descartar la entrada incorrecta
             continue; // Volver a solicitar las coordenadas
         }
 
         // Leer la columna
         if (!(cin >> columnaCasilla) || columnaCasilla <= 0) {
-            cout << "Error: La columna debe ser un número entero positivo. Intente nuevamente." << endl;
+            cout << "Error: La columna debe ser un numero entero positivo. Intente nuevamente." << endl;
             cin.clear(); // Limpiar el estado de error de cin
             cin.ignore(10000, '\n'); // Descartar la entrada incorrecta
             continue; // Volver a solicitar las coordenadas
@@ -183,7 +183,7 @@ int main() {
         if (compararMatrices(cerradura[totalRotaciones + 1], cerradura[totalRotaciones], filaCasilla, columnaCasilla, tamanos[totalRotaciones + 1], rotacionesSinExito, totalRotaciones) != comparacion) {
             // Si la comparación no es exitosa, mostrar mensaje y cambiar estado de la cerradura
             cerraduraAbierta = false;
-            cout << "La comparación no coincide con la matriz girada." << endl;
+            cout << "La comparacion no coincide con la matriz girada." << endl;
             break; // Salir del bucle al primer fallo
         }
 
@@ -192,7 +192,7 @@ int main() {
     //----------------------------------------------------------------------------------------------------------
     // Mostrar el estado de la cerradura
     if (cerraduraAbierta) {
-        cout << "La cerradura está abierta." << endl;
+        cout << "La cerradura esta abierta." << endl;
     } else {
         cout << "La cerradura permanece cerrada." << endl;
     }

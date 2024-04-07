@@ -68,7 +68,7 @@ void imprimirCerradura(int*** cerradura, int* tamanos, int numCerraduras, int ta
         imprimirMatriz(cerradura[i], tamanos[i], tamanos[i]); // Imprime la matriz original
         cout << endl;
 
-        cout << "Cerradura " << i+1 << " con tamaños iguales:" << endl;
+        cout << "Cerradura " << i+1 << " con tamanos iguales:" << endl;
         imprimirMatriz(cerradura[i], tamanos[i], tamanoMaximo); // Imprime la matriz con tamaños iguales
         cout << endl;
     }
