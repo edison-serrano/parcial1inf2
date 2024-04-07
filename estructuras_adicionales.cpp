@@ -61,7 +61,7 @@ void igualarTamanos(int*** cerradura, int* tamanos, int numCerraduras, int taman
     }
 }
 //-----------------------------------------------------------------------------------------------------
-// Función para imprimir la cerradura
+// Función para imprimir la cerradura(cambio tamanos)
 void imprimirCerradura(int*** cerradura, int* tamanos, int numCerraduras, int tamanoMaximo) {
     for (int i = 0; i < numCerraduras; ++i) {
         cout << "Cerradura " << i+1 << " Original:" << endl;

@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-int main() {
+int main() { //menu principal
     int numCerraduras;
 
     // Solicitar al usuario que ingrese el numero de matrices en la cerradura
