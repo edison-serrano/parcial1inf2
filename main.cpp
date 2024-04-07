@@ -2,6 +2,9 @@
 #include "prototipos.h"
 using namespace std;
 
+
+
+
 int main() {
     int numCerraduras;
 
@@ -30,7 +33,7 @@ int main() {
             cin >> tamaño;
 
             if (!cin) {
-                cout << "Formato incorrecto o valor inválido. Ingrese nuevamente en el formato correcto: ";
+                cout << "Formato incorrecto o valor inválido.\nIngrese nuevamente en el formato correcto: ";
                 cin.clear(); // Limpiar el estado de error
 
                 // Descartar la entrada incorrecta hasta encontrar un salto de línea
@@ -56,10 +59,14 @@ int main() {
     //--------------------------------------------------------------------------------------------------------------------------
     // Verificar si se ingresaron la cantidad correcta de tamaños de matrices
     int numTamañosIngresados = numCerraduras;
+    while (numTamañosIngresados == numCerraduras) {
     if (cin.peek() != '\n') {
         // Si hay caracteres adicionales después de los tamaños, significa que se ingresaron más valores de los necesarios
-        cout << "Se ingresaron más tamaños de matrices de los especificados. Por favor, intente nuevamente." << endl;
-        numTamañosIngresados = 0; // Reiniciar el contador de tamaños ingresados
+        cout << "Se ingresaron más tamaños de matrices de los especificados.\nSaliendo del Programa..." << endl;
+        //numTamañosIngresados = 0; // Reiniciar el contador de tamaños ingresados
+        delete[] tamanos;
+        return 0;
+    }
     }
     //------------------------------------------------------------------------------------------------------------
     // Imprimir los tamaños de las matrices ingresados si se ingresaron correctamente
@@ -155,7 +162,7 @@ int main() {
     int totalRotaciones = 0; // Contador de rotaciones totales
     bool cerraduraAbierta = true; // Suponemos que la cerradura está abierta
 
-    cout << "Ingrese las comparaciones en el formato (1: Mayor, -1: Menor\n(Ejjemplo 1,-1,1) separadas por comas: ";
+    cout << "Ingrese las comparaciones en el formato (1: Mayor, -1: Menor)\n(Ejjemplo 1,-1,1,) colocar una (,) al final: ";
     string comparaciones;
     cin.ignore(); // Limpiar el buffer
     getline(cin, comparaciones);
@@ -183,11 +190,17 @@ int main() {
         cout << "La cerradura permanece cerrada." << endl;
     }
     //--------------------------------------------------------------------------------------
+    /*
+
     // Mostrar el número de rotaciones sin éxito
     cout << "Número de rotaciones sin éxito: " << rotacionesSinExito << endl;
     // Mostrar el número total de rotaciones realizadas
     cout << "Número total de rotaciones: " << totalRotaciones << endl;
+*/
 
+
+
+ //---------------------------------------------------------------
     // Liberar memoria
     for (int i = 0; i < numCerraduras; ++i) {
         liberarMatriz(cerradura[i], tamanos[i]);
